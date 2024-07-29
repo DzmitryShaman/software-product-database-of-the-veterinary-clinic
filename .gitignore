@@ -1,0 +1,176 @@
+# Общие исключения для всех проектов
+*.log
+*.user
+*.lock
+*.suo
+*.sln.docstates
+*.userosscache
+*.slnbin
+*.sln.cache
+
+# Исключения для файлов Visual Studio
+.vs/
+.vscode/
+_ReSharper*/
+*.DotSettings.user
+
+# Исключения для артефактов сборки
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Tt]emp/
+*.exe
+*.dll
+*.pdb
+*.cache
+*.ilk
+*.log
+*.lib
+*.nupkg
+*.snk
+*.swp
+*.proto
+*.meta
+
+# Исключения для настроек и профилей
+*.csproj.user
+*.csproj.vspscc
+*.csproj.vssscc
+*.vbproj.user
+*.vbproj.vspscc
+*.vbproj.vssscc
+*.pfx
+*.publishsettings
+*.sln
+*.suo
+
+# Исключения для NuGet пакетов
+packages/
+*.nupkg
+*.nuspec
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Исключения для Entity Framework
+*.edmx.diagram
+*.edmx.sql
+*.edmx.models
+
+# Исключения для файлов, создаваемых инструментами
+*.DotSettings
+*.resharper
+*.sln.ide
+*.sln.docstates
+*.vspscc
+*.vssscc
+*.ncrunch*
+*.cache
+
+# Исключения для временных файлов
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
+*.orig
+
+# Исключения для WPF
+*.g.cs
+*.g.i.cs
+GeneratedFiles/
+TestResults/
+
+# Исключения для JetBrains Rider
+.idea/
+.idea_modules/
+.idea_bin/
+.idea_cache/
+.idea_ic/
+.idea_ig/
+.idea_svn/
+.idea_ws/
+.idea_ws_svn/
+.idea_ws_files/
+.idea_ws_diff/
+
+# Исключения для локальных настроек
+local.history/
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/jsLibraryMappings.xml
+.idea/jsLibraryMappings.xml
+.idea/.idea/
+.idea/.idea/.idea/
+.idea/.idea/.idea/.idea/
+.idea/.idea/.idea/.idea/.idea/
+.idea/.idea/.idea/.idea/.idea/.idea/
+.idea/.idea/.idea/.idea/.idea/.idea/.idea/
+.idea/.idea/.idea/.idea/.idea/.idea/.idea/.idea/
+.idea/.idea/.idea/.idea/.idea/.idea/.idea/.idea/.idea/
+
+# Исключения для Rider
+.idea/
+.idea_modules/
+.idea_bin/
+.idea_cache/
+.idea_ic/
+.idea_ig/
+.idea_svn/
+.idea_ws/
+.idea_ws_svn/
+.idea_ws_files/
+.idea_ws_diff/
+
+# Исключения для кэшированных файлов и временных файлов IDE
+.cache/
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.slnbin
+*.sln.docstates
+*.sln.cache
+
+# Исключения для кэшированных файлов и временных файлов операционной системы
+*.DS_Store
+*.AppleDouble
+*.LSOverride
+Icon?
+._*
+
+# Исключения для кэшированных файлов и временных файлов, созданных системами контроля версий
+*.svn
+*.git
+*.hg
+*.idea
+*.ionide
+*.ionide.bin
+
+# Исключения для кэшированных файлов и временных файлов, созданных редакторами
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# Исключения для кэшированных файлов и временных файлов, созданных инструментами
+*.tmproj
+*.tm_build_errors
+*.tm_build_results
+*.tm_properties
+*.tm_project
+*.tm_prj_files
+*.tm_prj_settings
+*.tmProject
+
+# Исключения для кэшированных файлов и временных файлов, созданных сторонними инструментами
+*.ncrunch*
+*.DotSettings.user
+*.resharper
+
+# Исключения для кэшированных файлов и временных файлов, созданных сторонними инструментами
+*.ncrunch*
+*.DotSettings.user
+*.resharper

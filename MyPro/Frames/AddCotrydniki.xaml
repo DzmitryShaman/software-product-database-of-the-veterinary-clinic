@@ -1,0 +1,63 @@
+﻿<Page x:Class="MyPro.Frames.AddCotrydniki"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Icon ="http://metro.mahapps.com/winfx/xaml/iconpacks"
+      xmlns:local="clr-namespace:MyPro.Frames"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="AddCotrydniki">
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </Page.Resources>
+    <StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+
+            </Grid.RowDefinitions>
+            <TextBlock Text="Добавить сотрудника" FontSize="20" FontWeight="SemiBold" Foreground="#121518" Grid.Row="0"/>
+            <Separator Margin="0,30,0,20" DockPanel.Dock="Top" Height="0.8" Background="#7e5fdc" Grid.ColumnSpan="2"/>
+            <TextBlock Text="КОНТАКТЫ" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" Foreground="#121518" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,10"/>
+            <TextBlock Text="Ф.И.О.:" FontSize="18" FontWeight="SemiBold" HorizontalAlignment="Left" Foreground="#121518" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="15,0,0,0"/>
+            <TextBox Name="AddFIO" FontSize="15" FontWeight="SemiBold" Background="White" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Top" Margin="125,0,40,0"/>
+            <TextBlock Text="Например: Иванов Иван Иванович" FontSize="10" FontWeight="SemiBold" HorizontalAlignment="Left" Foreground="#121518" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="125,30,0,15"/>
+            <TextBlock Text="Адрес" FontSize="18" FontWeight="SemiBold" HorizontalAlignment="Left" Foreground="#121518" Grid.Column="0" Grid.Row="3" Margin="15,0,0,0"/>
+            <TextBox Name="AddAdress" FontSize="15" FontWeight="SemiBold" Background="White" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Top" Margin="125,5,40,15"/>
+            <TextBlock Text="Телефон" FontSize="18" FontWeight="SemiBold" HorizontalAlignment="Left" Foreground="#121518" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="15,0,0,0"/>
+            <TextBox Name="AddTelephone" FontSize="15" FontWeight="SemiBold" Background="White" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Margin="125,0,40,15"/>
+            <TextBlock Text="Email" FontSize="18" FontWeight="SemiBold" HorizontalAlignment="Left" Foreground="#121518" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="15,0,0,0"/>
+            <TextBox Name="AddEmail" FontSize="15" FontWeight="SemiBold" Background="White" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Margin="125,0,40,15"/>
+            <TextBlock Text="Должность" FontSize="18" FontWeight="SemiBold" HorizontalAlignment="Left" Foreground="#121518" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="15,0,0,0"/>
+            <ComboBox x:Name="AddDoljnost" FontSize="15" FontWeight="SemiBold" Background="White" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2"  VerticalAlignment="Top" Margin="125,0,40,15" DisplayMemberPath="Наименование_должности" IsTextSearchEnabled="True" TextSearch.TextPath="Наименование_должности"/>
+            <TextBlock Text="Предоставляется выбор: " FontSize="10" FontWeight="SemiBold" HorizontalAlignment="Left" Foreground="#121518" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="125,30,0,15"/>
+            <TextBlock Text="Примечание" FontSize="17" FontWeight="SemiBold" HorizontalAlignment="Left" Foreground="#121518" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Margin="15,0,0,0"/>
+            <TextBox Name="AddPrimich" FontSize="15" FontWeight="SemiBold" Background="White" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" Margin="125,0,40,0" Height="118" />
+            <Button Style="{StaticResource addButton}" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Right" Margin="10" Click="Button_Click" >
+                <StackPanel Orientation="Horizontal">
+                    <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
+                    <TextBlock Text="Добавить"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="cancellation" Style="{StaticResource addButton}" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" Margin="10" Click="cancellation_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Icon:PackIconMaterial Kind="BlockHelper" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
+                    <TextBlock Text="Отмена"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+    </StackPanel>
+</Page>

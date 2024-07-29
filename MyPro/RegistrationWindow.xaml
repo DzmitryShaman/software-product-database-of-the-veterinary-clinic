@@ -1,0 +1,173 @@
+﻿<Window x:Class="MyPro.RegistrationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyPro"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None" 
+        AllowDrop="True" 
+        
+        Title="RegistrationWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="251*"/>
+            <ColumnDefinition Width="549*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="#4EB1B6" Grid.ColumnSpan="2" />
+
+        <Grid Grid.ColumnSpan="2" Margin="0,72,0,72" Grid.RowSpan="3">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Label Content="Регистрация профиля" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Tempus Sans ITC" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
+
+            <Label Grid.Row="1" Content="Логин:" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" FontStyle="Italic"/>
+            <Label Grid.Row="2" Content="Пароль:" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" FontStyle="Italic"/>
+
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="0 0 50 0" VerticalAlignment="Center" FontSize="14" TextWrapping="Wrap" />
+            <PasswordBox Grid.Row="2" Grid.Column="1" Margin="0 0 50 0" VerticalAlignment="Center" FontSize="14" />
+
+            <Button Grid.Row="3" Grid.ColumnSpan="2" Content="Создать профиль" Margin="20 10" Background="#FFE8A8E8"/>
+            <Button Grid.Row="4" Grid.ColumnSpan="2" Content="Авторизация" Margin="20 10" Background="#FFF3ECB1"/>
+        </Grid>
+
+        <Grid Background="#4EB1B6" Grid.Row="2" Grid.ColumnSpan="2">
+            <StackPanel Margin="0,0,65,0">
+                <TextBlock x:Name="text1" Text="Поддержка :" FontFamily="Century Gothic" FontSize="10">
+                    <TextBlock.Foreground>
+                        <SolidColorBrush Color="White"/>
+                    </TextBlock.Foreground>
+                </TextBlock>
+                <TextBlock x:Name="text2" Text="Возникли проблемы или по любым вопросам" FontFamily="Century Gothic" FontSize="10">
+                    <TextBlock.Foreground>
+                        <SolidColorBrush Color="White"/>
+                    </TextBlock.Foreground>
+                </TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock x:Name="text3" Text="электронный адрес : " FontFamily="Century Gothic" FontSize="10">
+                        <TextBlock.Foreground>
+                            <SolidColorBrush Color="White"/>
+                        </TextBlock.Foreground>
+                    </TextBlock>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="10" FontFamily="Microsoft Sans Serif" Foreground="#FFB36DD7"><Hyperlink NavigateUri="https://e.mail.ru/compose/?mailto=prood.04@mail.ru" RequestNavigate="Hyperlink_RequestNavigate"><Run Text="prood.04@mail.ru"/></Hyperlink></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+    <!--<Grid Background="Aqua">
+        <StackPanel x:Name="_1" Margin="0,0,0,374" Background="#4EB1B6">
+            <Canvas/>
+            <Grid x:Name="Move">
+                <Button x:Name="btnClose"
+                            Width="30"
+                            Height="30"
+                            Content="x"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            VerticalContentAlignment="Center"
+                            Padding="1,1,1,5"
+                            Click="btnClose_Click"
+                            Background="White"
+                            BorderBrush="#FF7B7B7B" Cursor="Hand">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}"
+                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                    BorderThickness="1"
+                                                    CornerRadius="20"
+                                                    Padding="{TemplateBinding Padding}">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <Button x:Name="btnMinimize"
+                            Width="30"
+                            Height="30"
+                            Content="-"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            VerticalContentAlignment="Center"
+                            Padding="1,1,1,5"
+                            Margin="0,0,30,0"
+                            Background="White"
+                            BorderBrush="#FF7B7B7B"
+                            Click="btnMinimize_Click" Cursor="Hand">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}"
+                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                    BorderThickness="1"
+                                                    CornerRadius="20"
+                                                    Padding="{TemplateBinding Padding}">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+        </StackPanel>
+        <Label Content="Регистрация профиля" HorizontalAlignment="Center" Margin="0,115,0,0" VerticalAlignment="Top" FontFamily="Tempus Sans ITC" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
+        <Label Content="Логин:" HorizontalAlignment="Left" Margin="196,186,0,0" VerticalAlignment="Top" FontSize="14" FontStyle="Italic"/>
+        <Label Content="Пароль:" HorizontalAlignment="Left" Margin="187,214,0,0" VerticalAlignment="Top" FontSize="14" FontStyle="Italic"/>
+        <TextBox HorizontalAlignment="Center" Margin="0,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
+        <Button Content="Создать профиль " HorizontalAlignment="Center" Margin="0,275,0,0" VerticalAlignment="Top" Width="148" Height="35" AutomationProperties.IsRequiredForForm="True" IsDefault="True" Background="#FFE8A8E8"/>
+        <Button Content="Авторизация " HorizontalAlignment="Center" Margin="0,315,0,0" VerticalAlignment="Top" Width="148" Height="35" AutomationProperties.IsRequiredForForm="True" IsDefault="True" Background="#FFF3ECB1"/>
+        <PasswordBox HorizontalAlignment="Center" Margin="0,222,0,0" VerticalAlignment="Top" Width="160"/>
+        <StackPanel x:Name="_1_Copy" Margin="0,390,0,0" Background="#4EB1B6">
+            <Canvas/>
+            <Grid x:Name="Move1"/>
+        </StackPanel>
+        <StackPanel Margin="0,0,65,0">
+            <TextBlock x:Name="text1" Text="Поддержка :" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="10" Margin="-730,400,0,0">
+                <TextBlock.Foreground>
+                    <SolidColorBrush Color="White"/>
+                </TextBlock.Foreground>
+            </TextBlock>
+            <TextBlock x:Name="text2" Text="Возникли проблемы или по любым вопросам" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="10" Margin="-560,1,0,0">
+                <TextBlock.Foreground>
+                    <SolidColorBrush Color="White"/>
+                </TextBlock.Foreground>
+            </TextBlock>
+            <TextBlock x:Name="text3" Text="электронный адрес :" HorizontalAlignment="Center" FontFamily="Century Gothic" FontSize="10" Margin="-685,1,0,0">
+                <TextBlock.Foreground>
+                    <SolidColorBrush Color="White"/>
+                </TextBlock.Foreground>
+            </TextBlock>
+        </StackPanel>
+    <TextBlock HorizontalAlignment="Left" Margin="121,413,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="10" FontFamily="Microsoft Sans Serif" Foreground="#FFB36DD7"><Hyperlink NavigateUri="https://e.mail.ru/compose/?mailto=prood.04@mail.ru" RequestNavigate="Hyperlink_RequestNavigate"><Run Text="prood.04@mail.ru"/></Hyperlink></TextBlock>
+    </Grid>-->
+</Window>

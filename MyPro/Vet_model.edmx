@@ -1,0 +1,675 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище VetClinicModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Должности">
+          <Key>
+            <PropertyRef Name="Код_должности" />
+          </Key>
+          <Property Name="Код_должности" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование_должности" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Животные">
+          <Key>
+            <PropertyRef Name="Код_животного" />
+          </Key>
+          <Property Name="Код_животного" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Порода" Type="int" Nullable="false" />
+          <Property Name="Кличка" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Владелец" Type="int" Nullable="false" />
+          <Property Name="Пол" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Дата_рождения" Type="date" Nullable="false" />
+          <Property Name="Окрас" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Информация" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Журнал_посещений">
+          <Key>
+            <PropertyRef Name="Код_номера_журнала" />
+          </Key>
+          <Property Name="Код_номера_журнала" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Дата" Type="date" Nullable="false" />
+          <Property Name="Код_животного" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Использованы_медикаменты">
+          <Key>
+            <PropertyRef Name="№_препората" />
+          </Key>
+          <Property Name="№_препората" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="№_журнала посещения" Type="int" Nullable="false" />
+          <Property Name="Код_медикамента" Type="int" Nullable="false" />
+          <Property Name="Цена" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Количество" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Клиенты">
+          <Key>
+            <PropertyRef Name="Код_клиента" />
+          </Key>
+          <Property Name="Код_клиента" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ФИО" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Адрес" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Телефон" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Примечание" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Медикаменты">
+          <Key>
+            <PropertyRef Name="Код_медикамента" />
+          </Key>
+          <Property Name="Код_медикамента" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Единицы_измерения" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Описание" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Оказание_услуг">
+          <Key>
+            <PropertyRef Name="№_препарата" />
+          </Key>
+          <Property Name="№_препарата" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="№_журнала посещения" Type="int" Nullable="false" />
+          <Property Name="Код_сотрудника" Type="int" Nullable="false" />
+          <Property Name="Код_услуги" Type="int" Nullable="false" />
+          <Property Name="Диагноз" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Породы">
+          <Key>
+            <PropertyRef Name="Код_породы" />
+          </Key>
+          <Property Name="Код_породы" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование_вида" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Наименование_породы" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Сотрудники">
+          <Key>
+            <PropertyRef Name="Код_сотрудника" />
+          </Key>
+          <Property Name="Код_сотрудника" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ФИО" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Адрес" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Телефон" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="30" />
+          <Property Name="Примечание" Type="nvarchar(max)" />
+          <Property Name="Код_должность" Type="int" Nullable="false" />
+          <Property Name="Логин" Type="nvarchar" MaxLength="50" />
+          <Property Name="Пароль" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Услуги">
+          <Key>
+            <PropertyRef Name="Код_услуги" />
+          </Key>
+          <Property Name="Код_услуги" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Цена" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Животные_Клиенты">
+          <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="1" />
+          <End Role="Животные" Type="Self.Животные" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиенты">
+              <PropertyRef Name="Код_клиента" />
+            </Principal>
+            <Dependent Role="Животные">
+              <PropertyRef Name="Владелец" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Животные_Породы">
+          <End Role="Породы" Type="Self.Породы" Multiplicity="1" />
+          <End Role="Животные" Type="Self.Животные" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Породы">
+              <PropertyRef Name="Код_породы" />
+            </Principal>
+            <Dependent Role="Животные">
+              <PropertyRef Name="Порода" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Журнал посещений_Животные">
+          <End Role="Животные" Type="Self.Животные" Multiplicity="1" />
+          <End Role="Журнал_посещений" Type="Self.Журнал_посещений" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Животные">
+              <PropertyRef Name="Код_животного" />
+            </Principal>
+            <Dependent Role="Журнал_посещений">
+              <PropertyRef Name="Код_животного" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Использованы медикаменты_Журнал посещений1">
+          <End Role="Журнал_посещений" Type="Self.Журнал_посещений" Multiplicity="1" />
+          <End Role="Использованы_медикаменты" Type="Self.Использованы_медикаменты" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Журнал_посещений">
+              <PropertyRef Name="Код_номера_журнала" />
+            </Principal>
+            <Dependent Role="Использованы_медикаменты">
+              <PropertyRef Name="№_журнала посещения" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Использованы медикаменты_Медикаменты">
+          <End Role="Медикаменты" Type="Self.Медикаменты" Multiplicity="1" />
+          <End Role="Использованы_медикаменты" Type="Self.Использованы_медикаменты" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Медикаменты">
+              <PropertyRef Name="Код_медикамента" />
+            </Principal>
+            <Dependent Role="Использованы_медикаменты">
+              <PropertyRef Name="Код_медикамента" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Оказание услуг_Журнал посещений">
+          <End Role="Журнал_посещений" Type="Self.Журнал_посещений" Multiplicity="1" />
+          <End Role="Оказание_услуг" Type="Self.Оказание_услуг" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Журнал_посещений">
+              <PropertyRef Name="Код_номера_журнала" />
+            </Principal>
+            <Dependent Role="Оказание_услуг">
+              <PropertyRef Name="№_журнала посещения" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Оказание услуг_Сотрудники">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="1" />
+          <End Role="Оказание_услуг" Type="Self.Оказание_услуг" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="Код_сотрудника" />
+            </Principal>
+            <Dependent Role="Оказание_услуг">
+              <PropertyRef Name="Код_сотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Оказание услуг_Услуги">
+          <End Role="Услуги" Type="Self.Услуги" Multiplicity="1" />
+          <End Role="Оказание_услуг" Type="Self.Оказание_услуг" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Услуги">
+              <PropertyRef Name="Код_услуги" />
+            </Principal>
+            <Dependent Role="Оказание_услуг">
+              <PropertyRef Name="Код_услуги" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Сотрудники_Должности">
+          <End Role="Должности" Type="Self.Должности" Multiplicity="1" />
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Должности">
+              <PropertyRef Name="Код_должности" />
+            </Principal>
+            <Dependent Role="Сотрудники">
+              <PropertyRef Name="Код_должность" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище VetClinicModelContainer">
+          <EntitySet Name="Должности" EntityType="Self.Должности" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Животные" EntityType="Self.Животные" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Журнал_посещений" EntityType="Self.Журнал_посещений" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Использованы_медикаменты" EntityType="Self.Использованы_медикаменты" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Клиенты" EntityType="Self.Клиенты" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Медикаменты" EntityType="Self.Медикаменты" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Оказание_услуг" EntityType="Self.Оказание_услуг" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Породы" EntityType="Self.Породы" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Услуги" EntityType="Self.Услуги" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Животные_Клиенты" Association="Self.FK_Животные_Клиенты">
+            <End Role="Клиенты" EntitySet="Клиенты" />
+            <End Role="Животные" EntitySet="Животные" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Животные_Породы" Association="Self.FK_Животные_Породы">
+            <End Role="Породы" EntitySet="Породы" />
+            <End Role="Животные" EntitySet="Животные" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Журнал посещений_Животные" Association="Self.FK_Журнал посещений_Животные">
+            <End Role="Животные" EntitySet="Животные" />
+            <End Role="Журнал_посещений" EntitySet="Журнал_посещений" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Использованы медикаменты_Журнал посещений1" Association="Self.FK_Использованы медикаменты_Журнал посещений1">
+            <End Role="Журнал_посещений" EntitySet="Журнал_посещений" />
+            <End Role="Использованы_медикаменты" EntitySet="Использованы_медикаменты" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Использованы медикаменты_Медикаменты" Association="Self.FK_Использованы медикаменты_Медикаменты">
+            <End Role="Медикаменты" EntitySet="Медикаменты" />
+            <End Role="Использованы_медикаменты" EntitySet="Использованы_медикаменты" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Оказание услуг_Журнал посещений" Association="Self.FK_Оказание услуг_Журнал посещений">
+            <End Role="Журнал_посещений" EntitySet="Журнал_посещений" />
+            <End Role="Оказание_услуг" EntitySet="Оказание_услуг" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Оказание услуг_Сотрудники" Association="Self.FK_Оказание услуг_Сотрудники">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="Оказание_услуг" EntitySet="Оказание_услуг" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Оказание услуг_Услуги" Association="Self.FK_Оказание услуг_Услуги">
+            <End Role="Услуги" EntitySet="Услуги" />
+            <End Role="Оказание_услуг" EntitySet="Оказание_услуг" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Сотрудники_Должности" Association="Self.FK_Сотрудники_Должности">
+            <End Role="Должности" EntitySet="Должности" />
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VetClinicModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="VetClinicEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Должности" EntityType="VetClinicModel.Должности" />
+          <EntitySet Name="Журнал_посещений" EntityType="VetClinicModel.Журнал_посещений" />
+          <EntitySet Name="Использованы_медикаменты" EntityType="VetClinicModel.Использованы_медикаменты" />
+          <EntitySet Name="Клиенты" EntityType="VetClinicModel.Клиенты" />
+          <EntitySet Name="Медикаменты" EntityType="VetClinicModel.Медикаменты" />
+          <EntitySet Name="Оказание_услуг" EntityType="VetClinicModel.Оказание_услуг" />
+          <EntitySet Name="Сотрудники" EntityType="VetClinicModel.Сотрудники" />
+          <EntitySet Name="Услуги" EntityType="VetClinicModel.Услуги" />
+          <AssociationSet Name="FK_Сотрудники_Должности" Association="VetClinicModel.FK_Сотрудники_Должности">
+            <End Role="Должности" EntitySet="Должности" />
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Использованы_медикаменты_Журнал_посещений1" Association="VetClinicModel.FK_Использованы_медикаменты_Журнал_посещений1">
+            <End Role="Журнал_посещений" EntitySet="Журнал_посещений" />
+            <End Role="Использованы_медикаменты" EntitySet="Использованы_медикаменты" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Оказание_услуг_Журнал_посещений" Association="VetClinicModel.FK_Оказание_услуг_Журнал_посещений">
+            <End Role="Журнал_посещений" EntitySet="Журнал_посещений" />
+            <End Role="Оказание_услуг" EntitySet="Оказание_услуг" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Использованы_медикаменты_Медикаменты" Association="VetClinicModel.FK_Использованы_медикаменты_Медикаменты">
+            <End Role="Медикаменты" EntitySet="Медикаменты" />
+            <End Role="Использованы_медикаменты" EntitySet="Использованы_медикаменты" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Оказание_услуг_Сотрудники" Association="VetClinicModel.FK_Оказание_услуг_Сотрудники">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="Оказание_услуг" EntitySet="Оказание_услуг" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Оказание_услуг_Услуги" Association="VetClinicModel.FK_Оказание_услуг_Услуги">
+            <End Role="Услуги" EntitySet="Услуги" />
+            <End Role="Оказание_услуг" EntitySet="Оказание_услуг" />
+          </AssociationSet>
+          <EntitySet Name="Животные" EntityType="VetClinicModel.Животные" />
+          <EntitySet Name="Породы" EntityType="VetClinicModel.Породы" />
+          <AssociationSet Name="FK_Животные_Клиенты" Association="VetClinicModel.FK_Животные_Клиенты">
+            <End Role="Клиенты" EntitySet="Клиенты" />
+            <End Role="Животные" EntitySet="Животные" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Животные_Породы" Association="VetClinicModel.FK_Животные_Породы">
+            <End Role="Породы" EntitySet="Породы" />
+            <End Role="Животные" EntitySet="Животные" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Журнал_посещений_Животные" Association="VetClinicModel.FK_Журнал_посещений_Животные">
+            <End Role="Животные" EntitySet="Животные" />
+            <End Role="Журнал_посещений" EntitySet="Журнал_посещений" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Должности">
+          <Key>
+            <PropertyRef Name="Код_должности" />
+          </Key>
+          <Property Name="Код_должности" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование_должности" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Сотрудники" Relationship="VetClinicModel.FK_Сотрудники_Должности" FromRole="Должности" ToRole="Сотрудники" />
+        </EntityType>
+        <EntityType Name="Журнал_посещений">
+          <Key>
+            <PropertyRef Name="Код_номера_журнала" />
+          </Key>
+          <Property Name="Код_номера_журнала" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Дата" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Код_животного" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Использованы_медикаменты" Relationship="VetClinicModel.FK_Использованы_медикаменты_Журнал_посещений1" FromRole="Журнал_посещений" ToRole="Использованы_медикаменты" />
+          <NavigationProperty Name="Оказание_услуг" Relationship="VetClinicModel.FK_Оказание_услуг_Журнал_посещений" FromRole="Журнал_посещений" ToRole="Оказание_услуг" />
+          <NavigationProperty Name="Животные" Relationship="VetClinicModel.FK_Журнал_посещений_Животные" FromRole="Журнал_посещений" ToRole="Животные" />
+        </EntityType>
+        <EntityType Name="Использованы_медикаменты">
+          <Key>
+            <PropertyRef Name="C__препората" />
+          </Key>
+          <Property Name="C__препората" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="C__журнала_посещения" Type="Int32" Nullable="false" />
+          <Property Name="Код_медикамента" Type="Int32" Nullable="false" />
+          <Property Name="Цена" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Количество" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Журнал_посещений" Relationship="VetClinicModel.FK_Использованы_медикаменты_Журнал_посещений1" FromRole="Использованы_медикаменты" ToRole="Журнал_посещений" />
+          <NavigationProperty Name="Медикаменты" Relationship="VetClinicModel.FK_Использованы_медикаменты_Медикаменты" FromRole="Использованы_медикаменты" ToRole="Медикаменты" />
+        </EntityType>
+        <EntityType Name="Клиенты">
+          <Key>
+            <PropertyRef Name="Код_клиента" />
+          </Key>
+          <Property Name="Код_клиента" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ФИО" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Адрес" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Телефон" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Примечание" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Животные" Relationship="VetClinicModel.FK_Животные_Клиенты" FromRole="Клиенты" ToRole="Животные" />
+        </EntityType>
+        <EntityType Name="Медикаменты">
+          <Key>
+            <PropertyRef Name="Код_медикамента" />
+          </Key>
+          <Property Name="Код_медикамента" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Единицы_измерения" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Описание" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Использованы_медикаменты" Relationship="VetClinicModel.FK_Использованы_медикаменты_Медикаменты" FromRole="Медикаменты" ToRole="Использованы_медикаменты" />
+        </EntityType>
+        <EntityType Name="Оказание_услуг">
+          <Key>
+            <PropertyRef Name="C__препарата" />
+          </Key>
+          <Property Name="C__препарата" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="C__журнала_посещения" Type="Int32" Nullable="false" />
+          <Property Name="Код_сотрудника" Type="Int32" Nullable="false" />
+          <Property Name="Код_услуги" Type="Int32" Nullable="false" />
+          <Property Name="Диагноз" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Журнал_посещений" Relationship="VetClinicModel.FK_Оказание_услуг_Журнал_посещений" FromRole="Оказание_услуг" ToRole="Журнал_посещений" />
+          <NavigationProperty Name="Сотрудники" Relationship="VetClinicModel.FK_Оказание_услуг_Сотрудники" FromRole="Оказание_услуг" ToRole="Сотрудники" />
+          <NavigationProperty Name="Услуги" Relationship="VetClinicModel.FK_Оказание_услуг_Услуги" FromRole="Оказание_услуг" ToRole="Услуги" />
+        </EntityType>
+        <EntityType Name="Сотрудники">
+          <Key>
+            <PropertyRef Name="Код_сотрудника" />
+          </Key>
+          <Property Name="Код_сотрудника" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ФИО" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Адрес" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Телефон" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Примечание" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Код_должность" Type="Int32" Nullable="false" />
+          <Property Name="Логин" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Пароль" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Должности" Relationship="VetClinicModel.FK_Сотрудники_Должности" FromRole="Сотрудники" ToRole="Должности" />
+          <NavigationProperty Name="Оказание_услуг" Relationship="VetClinicModel.FK_Оказание_услуг_Сотрудники" FromRole="Сотрудники" ToRole="Оказание_услуг" />
+        </EntityType>
+        <EntityType Name="Услуги">
+          <Key>
+            <PropertyRef Name="Код_услуги" />
+          </Key>
+          <Property Name="Код_услуги" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Цена" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Оказание_услуг" Relationship="VetClinicModel.FK_Оказание_услуг_Услуги" FromRole="Услуги" ToRole="Оказание_услуг" />
+        </EntityType>
+        <Association Name="FK_Сотрудники_Должности">
+          <End Type="VetClinicModel.Должности" Role="Должности" Multiplicity="1" />
+          <End Type="VetClinicModel.Сотрудники" Role="Сотрудники" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Должности">
+              <PropertyRef Name="Код_должности" />
+            </Principal>
+            <Dependent Role="Сотрудники">
+              <PropertyRef Name="Код_должность" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Использованы_медикаменты_Журнал_посещений1">
+          <End Type="VetClinicModel.Журнал_посещений" Role="Журнал_посещений" Multiplicity="1" />
+          <End Type="VetClinicModel.Использованы_медикаменты" Role="Использованы_медикаменты" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Журнал_посещений">
+              <PropertyRef Name="Код_номера_журнала" />
+            </Principal>
+            <Dependent Role="Использованы_медикаменты">
+              <PropertyRef Name="C__журнала_посещения" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Оказание_услуг_Журнал_посещений">
+          <End Type="VetClinicModel.Журнал_посещений" Role="Журнал_посещений" Multiplicity="1" />
+          <End Type="VetClinicModel.Оказание_услуг" Role="Оказание_услуг" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Журнал_посещений">
+              <PropertyRef Name="Код_номера_журнала" />
+            </Principal>
+            <Dependent Role="Оказание_услуг">
+              <PropertyRef Name="C__журнала_посещения" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Использованы_медикаменты_Медикаменты">
+          <End Type="VetClinicModel.Медикаменты" Role="Медикаменты" Multiplicity="1" />
+          <End Type="VetClinicModel.Использованы_медикаменты" Role="Использованы_медикаменты" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Медикаменты">
+              <PropertyRef Name="Код_медикамента" />
+            </Principal>
+            <Dependent Role="Использованы_медикаменты">
+              <PropertyRef Name="Код_медикамента" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Оказание_услуг_Сотрудники">
+          <End Type="VetClinicModel.Сотрудники" Role="Сотрудники" Multiplicity="1" />
+          <End Type="VetClinicModel.Оказание_услуг" Role="Оказание_услуг" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="Код_сотрудника" />
+            </Principal>
+            <Dependent Role="Оказание_услуг">
+              <PropertyRef Name="Код_сотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Оказание_услуг_Услуги">
+          <End Type="VetClinicModel.Услуги" Role="Услуги" Multiplicity="1" />
+          <End Type="VetClinicModel.Оказание_услуг" Role="Оказание_услуг" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Услуги">
+              <PropertyRef Name="Код_услуги" />
+            </Principal>
+            <Dependent Role="Оказание_услуг">
+              <PropertyRef Name="Код_услуги" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Животные">
+          <Key>
+            <PropertyRef Name="Код_животного" />
+          </Key>
+          <Property Name="Код_животного" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Порода" Type="Int32" Nullable="false" />
+          <Property Name="Кличка" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Владелец" Type="Int32" Nullable="false" />
+          <Property Name="Пол" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Дата_рождения" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Окрас" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Информация" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Клиенты" Relationship="VetClinicModel.FK_Животные_Клиенты" FromRole="Животные" ToRole="Клиенты" />
+          <NavigationProperty Name="Породы" Relationship="VetClinicModel.FK_Животные_Породы" FromRole="Животные" ToRole="Породы" />
+          <NavigationProperty Name="Журнал_посещений" Relationship="VetClinicModel.FK_Журнал_посещений_Животные" FromRole="Животные" ToRole="Журнал_посещений" />
+        </EntityType>
+        <EntityType Name="Породы">
+          <Key>
+            <PropertyRef Name="Код_породы" />
+          </Key>
+          <Property Name="Код_породы" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование_вида" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Наименование_породы" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Животные" Relationship="VetClinicModel.FK_Животные_Породы" FromRole="Породы" ToRole="Животные" />
+        </EntityType>
+        <Association Name="FK_Животные_Клиенты">
+          <End Type="VetClinicModel.Клиенты" Role="Клиенты" Multiplicity="1" />
+          <End Type="VetClinicModel.Животные" Role="Животные" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиенты">
+              <PropertyRef Name="Код_клиента" />
+            </Principal>
+            <Dependent Role="Животные">
+              <PropertyRef Name="Владелец" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Животные_Породы">
+          <End Type="VetClinicModel.Породы" Role="Породы" Multiplicity="1" />
+          <End Type="VetClinicModel.Животные" Role="Животные" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Породы">
+              <PropertyRef Name="Код_породы" />
+            </Principal>
+            <Dependent Role="Животные">
+              <PropertyRef Name="Порода" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Журнал_посещений_Животные">
+          <End Type="VetClinicModel.Животные" Role="Животные" Multiplicity="1" />
+          <End Type="VetClinicModel.Журнал_посещений" Role="Журнал_посещений" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Животные">
+              <PropertyRef Name="Код_животного" />
+            </Principal>
+            <Dependent Role="Журнал_посещений">
+              <PropertyRef Name="Код_животного" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище VetClinicModelContainer" CdmEntityContainer="VetClinicEntities">
+          <EntitySetMapping Name="Должности">
+            <EntityTypeMapping TypeName="VetClinicModel.Должности">
+              <MappingFragment StoreEntitySet="Должности">
+                <ScalarProperty Name="Наименование_должности" ColumnName="Наименование_должности" />
+                <ScalarProperty Name="Код_должности" ColumnName="Код_должности" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Журнал_посещений">
+            <EntityTypeMapping TypeName="VetClinicModel.Журнал_посещений">
+              <MappingFragment StoreEntitySet="Журнал_посещений">
+                <ScalarProperty Name="Код_животного" ColumnName="Код_животного" />
+                <ScalarProperty Name="Дата" ColumnName="Дата" />
+                <ScalarProperty Name="Код_номера_журнала" ColumnName="Код_номера_журнала" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Использованы_медикаменты">
+            <EntityTypeMapping TypeName="VetClinicModel.Использованы_медикаменты">
+              <MappingFragment StoreEntitySet="Использованы_медикаменты">
+                <ScalarProperty Name="Количество" ColumnName="Количество" />
+                <ScalarProperty Name="Цена" ColumnName="Цена" />
+                <ScalarProperty Name="Код_медикамента" ColumnName="Код_медикамента" />
+                <ScalarProperty Name="C__журнала_посещения" ColumnName="№_журнала посещения" />
+                <ScalarProperty Name="C__препората" ColumnName="№_препората" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Клиенты">
+            <EntityTypeMapping TypeName="VetClinicModel.Клиенты">
+              <MappingFragment StoreEntitySet="Клиенты">
+                <ScalarProperty Name="Примечание" ColumnName="Примечание" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+                <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+                <ScalarProperty Name="Код_клиента" ColumnName="Код_клиента" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Медикаменты">
+            <EntityTypeMapping TypeName="VetClinicModel.Медикаменты">
+              <MappingFragment StoreEntitySet="Медикаменты">
+                <ScalarProperty Name="Описание" ColumnName="Описание" />
+                <ScalarProperty Name="Единицы_измерения" ColumnName="Единицы_измерения" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="Код_медикамента" ColumnName="Код_медикамента" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Оказание_услуг">
+            <EntityTypeMapping TypeName="VetClinicModel.Оказание_услуг">
+              <MappingFragment StoreEntitySet="Оказание_услуг">
+                <ScalarProperty Name="Диагноз" ColumnName="Диагноз" />
+                <ScalarProperty Name="Код_услуги" ColumnName="Код_услуги" />
+                <ScalarProperty Name="Код_сотрудника" ColumnName="Код_сотрудника" />
+                <ScalarProperty Name="C__журнала_посещения" ColumnName="№_журнала посещения" />
+                <ScalarProperty Name="C__препарата" ColumnName="№_препарата" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Сотрудники">
+            <EntityTypeMapping TypeName="VetClinicModel.Сотрудники">
+              <MappingFragment StoreEntitySet="Сотрудники">
+                <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+                <ScalarProperty Name="Логин" ColumnName="Логин" />
+                <ScalarProperty Name="Код_должность" ColumnName="Код_должность" />
+                <ScalarProperty Name="Примечание" ColumnName="Примечание" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+                <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+                <ScalarProperty Name="Код_сотрудника" ColumnName="Код_сотрудника" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Услуги">
+            <EntityTypeMapping TypeName="VetClinicModel.Услуги">
+              <MappingFragment StoreEntitySet="Услуги">
+                <ScalarProperty Name="Цена" ColumnName="Цена" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="Код_услуги" ColumnName="Код_услуги" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Животные">
+            <EntityTypeMapping TypeName="VetClinicModel.Животные">
+              <MappingFragment StoreEntitySet="Животные">
+                <ScalarProperty Name="Информация" ColumnName="Информация" />
+                <ScalarProperty Name="Окрас" ColumnName="Окрас" />
+                <ScalarProperty Name="Дата_рождения" ColumnName="Дата_рождения" />
+                <ScalarProperty Name="Пол" ColumnName="Пол" />
+                <ScalarProperty Name="Владелец" ColumnName="Владелец" />
+                <ScalarProperty Name="Кличка" ColumnName="Кличка" />
+                <ScalarProperty Name="Порода" ColumnName="Порода" />
+                <ScalarProperty Name="Код_животного" ColumnName="Код_животного" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Породы">
+            <EntityTypeMapping TypeName="VetClinicModel.Породы">
+              <MappingFragment StoreEntitySet="Породы">
+                <ScalarProperty Name="Наименование_породы" ColumnName="Наименование_породы" />
+                <ScalarProperty Name="Наименование_вида" ColumnName="Наименование_вида" />
+                <ScalarProperty Name="Код_породы" ColumnName="Код_породы" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

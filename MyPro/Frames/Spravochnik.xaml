@@ -1,0 +1,326 @@
+﻿<Page x:Class="MyPro.Frames.Spravochnik"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:Icon ="http://metro.mahapps.com/winfx/xaml/iconpacks"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MyPro.Frames"
+      mc:Ignorable="d" 
+      d:DesignHeight="750" d:DesignWidth="1600"
+      Title="Spravochnik"
+      x:Name="SpravochnikPage">
+
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </Page.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+        <StackPanel>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Справочник" FontSize="20" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#121518"/>
+                <TextBlock Text="Поиск" Grid.Row="0" FontSize="13" FontWeight="SemiBold" Margin="0 0 215 0" Foreground="#121518" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+                <Grid Width="200" HorizontalAlignment="Right" Grid.Row="0">
+                    <TextBlock Margin="15 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
+                           Panel.ZIndex="1" Text="Search in Members ..."
+               Visibility="{Binding ElementName=textBoxFilter, Converter={StaticResource BoolToVis}}" />
+
+                    <TextBox Name="textBoxFilter" Style="{StaticResource filterTextBox}" TextChanged="textBoxFilter_TextChanged" />
+                    <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="16" VerticalAlignment="Center"
+                Margin="180,0,0,0" Foreground="#b0b9c6"/>
+                </Grid>
+
+                <TabControl Grid.Row="1">
+                    <TabItem Header="Услуги" x:Name="TabItem1">
+                        <StackPanel>
+                            <DataGrid Name="Spravoch1" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Height="280">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Код услуги" Binding="{Binding Код_услуги}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Наименование услуги" Binding="{Binding Наименование}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Цена услуги" Binding="{Binding Цена}"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                            <!-- Группировка элементов с использованием StackPanel -->
+                            <StackPanel>
+                                <!-- Pagination Section -->
+                                <Border HorizontalAlignment="Right" BorderBrush="#DEE4EC" BorderThickness="1" CornerRadius="5" Padding="5" Background="#ffffff" Margin="0 10 10 10">
+                                    <StackPanel Name="allButtons" Orientation="Horizontal">
+                                        <Button Name="p1" Style="{StaticResource pagingButton}" Click="PrevPageButton_Click">
+                                            <Icon:PackIconMaterial Kind="ChevronLeft" Style="{StaticResource pagingButtonIcon}"/>
+                                        </Button>
+                                        <Rectangle Width="1" Fill="#DEE4EC" Margin="3 7"/>
+                                        <Button Style="{StaticResource pagingButton}" Content="1" Click="PageButton_Click"/>
+                                        <Button Style="{StaticResource pagingButton}" Content="2" Click="PageButton_Click"/>
+                                        <Button Style="{StaticResource pagingButton}" Content="3" Click="PageButton_Click"/>
+
+                                        <TextBlock Text="..." Foreground="#6C7682" VerticalAlignment="Center" Margin="10 0" FontSize="15"/>
+
+                                        <Button Style="{StaticResource pagingButton}" Content="7" Click="PageButton_Click"/>
+                                        <Button Style="{StaticResource pagingButton}" Content="8" Click="PageButton_Click"/>
+                                        <Button Style="{StaticResource pagingButton}" Content="9" Click="PageButton_Click"/>
+
+                                        <Rectangle Width="1" Fill="#DEE4EC" Margin="3 7"/>
+                                        <Button Name="p2" Style="{StaticResource pagingButton}" Click="NextPageButton_Click">
+                                            <Icon:PackIconMaterial Kind="ChevronRight" Style="{StaticResource pagingButtonIcon}"/>
+                                        </Button>
+                                    </StackPanel>
+                                </Border>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Добавить"  Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold" Foreground="#121518" Margin="0 10 0 10"/>
+                                    <TextBlock Text="Наимен. усл" TextTrimming="CharacterEllipsis" Grid.Column="0" Grid.Row="1"  FontWeight="SemiBold"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 5 0" FontSize="11" ></TextBlock>
+                                    <TextBlock Text="Цена услуги" Grid.Column="0" TextTrimming="CharacterEllipsis" Grid.Row="2" FontWeight="SemiBold"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 5 0" FontSize="11"></TextBlock>
+                                    <TextBox Name="AddNameYS" Grid.Column="0" Grid.Row="1" FontWeight="SemiBold" Background="White" Width="140" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 5" ></TextBox>
+                                    <TextBox Name="AddSenaYS" Grid.Column="0" Grid.Row="2" FontWeight="SemiBold" Background="White" Width="140" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 5" ></TextBox>
+                                    <TextBlock Text="Выбор усл." Grid.Column="1" Grid.Row="1"  FontWeight="SemiBold"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 5 0" FontSize="11"></TextBlock>
+                                    <TextBlock Text="Наимен. усл." Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" FontWeight="SemiBold"  HorizontalAlignment="Left" Margin="0 0 5 0" FontSize="11"></TextBlock>
+                                    <TextBlock Text="Цена усл." Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="0 0 5 0" FontSize="11" ></TextBlock>
+                                    <TextBlock Text="Изменить" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" FontSize="18" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="#121518" Margin="0 10 0 10" />
+                                    <ComboBox x:Name="ViborYS" Grid.Column="0" Grid.Row="4" FontWeight="SemiBold" Background="White" Width="140" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 5" SelectionChanged="AllViborYS_SelectionChanged" Visibility="Hidden" ></ComboBox>
+                                    <TextBox Name="reNameYS" Grid.Column="1" Grid.Row="2" FontWeight="SemiBold" Background="White" Width="140" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 5"></TextBox>
+                                    <TextBox Name="reSenaYS" Grid.Column="1" Grid.Row="3" FontWeight="SemiBold" Background="White" Width="140" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 5"></TextBox>
+                                    <TextBlock Text="Цена услуги" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" FontWeight="SemiBold"  HorizontalAlignment="Left" Margin="0 0 5 0" FontSize="11"></TextBlock>
+                                    <TextBlock Text="Удалить" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" FontSize="18" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="#121518" Margin="0 10 0 10"/>
+                                    <ComboBox x:Name="DropYs" Grid.Column="2" Grid.Row="1" FontWeight="SemiBold" Background="White" Width="140" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 5" SelectionChanged="DropYs_SelectedIndexChanged" IsEditable="True"></ComboBox>
+                                    <Button Click="addYSL_Click" Content="Добавить" Width="100" Height="30" Grid.Column="0" Grid.Row="3" Margin="0 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Button Click="editYSL_Click" Content="Изменить"  Width="100" Height="30" Grid.Column="1" Grid.Row="4" Margin="0 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    <Button Content="Удалить" Click="Button_Click"  Width="100" Height="30" Grid.Column="2" Grid.Row="2" Margin="0 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    <ComboBox x:Name="vibor_ysl" Grid.Column="1" Grid.Row="1" FontWeight="SemiBold" Background="White" Width="140" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 5" SelectionChanged="viborysl_SelectedIndexChanged" IsEditable="True" ></ComboBox>
+                                </Grid>
+                            </StackPanel>
+                        </StackPanel>
+                    </TabItem>
+
+
+                    <TabItem Header="Медикаменты" x:Name="TabItem2">
+                        <StackPanel>
+                            <DataGrid Name="Spravoch2" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Height="280">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Код медикамента" Binding="{Binding Код_медикамента}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Наименование медикамента" Binding="{Binding Наименование}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Единицы изререния" Binding="{Binding Единицы_измерения}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Описание медикамента" Binding="{Binding Описание}"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <!--Pagingation Section-->
+                            <Border Grid.Row="6" HorizontalAlignment="Right" BorderBrush="#DEE4EC" BorderThickness="1" CornerRadius="5" Padding="5" Background="#ffffff" Margin="0 10 10 10">
+                                <StackPanel Name="llButtons" Orientation="Horizontal">
+                                    <Button Name="q1" Style="{StaticResource pagingButton}" Click="PrevPageButton_Click1">
+                                        <Icon:PackIconMaterial Kind="ChevronLeft" Style="{StaticResource pagingButtonIcon}"/>
+                                    </Button>
+                                    <Rectangle Width="1" Fill="#DEE4EC" Margin="3 7"/>
+                                    <Button Style="{StaticResource pagingButton}" Content="1"  Click="PageButton_Click1"/>
+                                    <Button Style="{StaticResource pagingButton}" Content="2" Click="PageButton_Click1"/>
+                                    <Button Style="{StaticResource pagingButton}" Content="3" Click="PageButton_Click1"/>
+
+                                    <TextBlock Text="..." Foreground="#6C7682" VerticalAlignment="Center" Margin="10 0" FontSize="15"/>
+
+                                    <Button Style="{StaticResource pagingButton}" Content="7" Click="PageButton_Click1"/>
+                                    <Button Style="{StaticResource pagingButton}" Content="8" Click="PageButton_Click1"/>
+                                    <Button Style="{StaticResource pagingButton}" Content="9" Click="PageButton_Click1"/>
+
+                                    <Rectangle Width="1" Fill="#DEE4EC" Margin="3 7"/>
+                                    <Button Name="q2" Style="{StaticResource pagingButton}" Click="NextPageButton_Click1">
+                                        <Icon:PackIconMaterial Kind="ChevronRight" Style="{StaticResource pagingButtonIcon}"/>
+                                    </Button>
+                                </StackPanel>
+                            </Border>
+                            <Grid>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Добавить"  Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold" Foreground="#121518" Margin="0 10 0 10"/>
+                                    <TextBlock Text="Наимен.усл" TextTrimming="CharacterEllipsis" Grid.Column="0" Grid.Row="1"  FontWeight="SemiBold"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 5 0" FontSize="11" ></TextBlock>
+                                    <TextBlock Text="Ед.изм" Grid.Column="0" TextTrimming="CharacterEllipsis" Grid.Row="2" FontWeight="SemiBold"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 5 0" FontSize="11"></TextBlock>
+                                    <TextBlock Text="Описание" TextTrimming="CharacterEllipsis" Grid.Column="0" Grid.Row="3"  FontWeight="SemiBold"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 5 0" FontSize="11" ></TextBlock>
+                                    <TextBox Name="q" Grid.Column="0" Grid.Row="1" FontWeight="SemiBold" Background="White" Width="140" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 5" ></TextBox>
+                                    <TextBox Name="w" Grid.Column="0" Grid.Row="2" FontWeight="SemiBold" Background="White" Width="140" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 5" ></TextBox>
+                                    <TextBox Name="wя" Grid.Column="0" Grid.Row="3" FontWeight="SemiBold" Background="White" Width="140" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 5" ></TextBox>
+                                    <TextBlock Text="Выбор мед" TextTrimming="CharacterEllipsis" Grid.Column="1" Grid.Row="1"  FontWeight="SemiBold"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 5 0" FontSize="11"></TextBlock>
+                                    <TextBlock Text="Наимен.мед" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" FontWeight="SemiBold"  HorizontalAlignment="Left" Margin="0 0 5 0" FontSize="11"></TextBlock>
+                                    <TextBlock Text="Ед.изм" TextTrimming="CharacterEllipsis" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="0 0 5 0" FontSize="11" ></TextBlock>
+                                    <TextBlock Text="Описание" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="0 0 5 0" FontSize="11" ></TextBlock>
+                                    <TextBlock Text="Изменить" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" FontSize="18" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="#121518" Margin="0 10 0 10" />
+                                    <ComboBox Name="vibor_med" Grid.Column="1" Grid.Row="1" FontWeight="SemiBold" Background="White" Width="140" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 5" SelectionChanged="vibormed_SelectedIndexChanged" IsEditable="True"></ComboBox>
+                                    <TextBox Name="rename_med" Grid.Column="1" Grid.Row="2" FontWeight="SemiBold" Background="White" Width="140" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 5"></TextBox>
+                                    <TextBox Name="rename_op" Grid.Column="1" Grid.Row="4" FontWeight="SemiBold" Background="White" Width="140" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 5"></TextBox>
+                                    <TextBox Name="rename_ed" Grid.Column="1" Grid.Row="3" FontWeight="SemiBold" Background="White" Width="140" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 5"></TextBox>
+                                    <TextBlock Text="Выбор мед." TextTrimming="CharacterEllipsis" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" FontWeight="SemiBold"  HorizontalAlignment="Left" Margin="0 0 5 0" FontSize="11"></TextBlock>
+                                    <TextBlock Text="Удалить" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" FontSize="18" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="#121518" Margin="0 10 0 10"/>
+                                    <ComboBox x:Name="z" IsEditable="True" Grid.Column="2" Grid.Row="1" FontWeight="SemiBold" Background="White" Width="140" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 5" SelectionChanged="DropMed_SelectedIndexChanged"></ComboBox>
+                                    <Button Click="addMed_Click" Content="Добавить" Width="100" Height="30" Grid.Column="0" Grid.Row="4" Margin="0 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Button Click="editMed_Click" Content="Изменить" Width="100" Height="30" Grid.Column="1" Grid.Row="5" Margin="0 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    <Button Click="Del_Click" Content="Удалить" Width="100" Height="30" Grid.Column="2" Grid.Row="2" Margin="0 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Grid>
+                            </Grid>
+                        </StackPanel>
+                    </TabItem>
+
+                    <TabItem Header="Должности" x:Name="TabItem3">
+                        <StackPanel>
+                            <DataGrid Name="Spravoch3" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Height="280" ItemsSource="{Binding pageDataCollectionDol}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Код должности" Binding="{Binding Код_должности}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Наименование должности" Binding="{Binding Наименование_должности}"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <!--Pagingation Section-->
+                            <Border Grid.Row="6" HorizontalAlignment="Right" BorderBrush="#DEE4EC" BorderThickness="1" CornerRadius="5" Padding="5" Background="#ffffff" Margin="0 10 10 10">
+                                <StackPanel Name="wlButtons" Orientation="Horizontal">
+                                    <Button Name="w1" Style="{StaticResource pagingButton}" Click="PrevPageButton_Click">
+                                        <Icon:PackIconMaterial Kind="ChevronLeft" Style="{StaticResource pagingButtonIcon}"/>
+                                    </Button>
+                                    <Rectangle Width="1" Fill="#DEE4EC" Margin="3 7"/>
+                                    <Button Style="{StaticResource pagingButton}" Content="1" Click="PageButton_Click3"/>
+                                    <Button Style="{StaticResource pagingButton}" Content="2" Click="PageButton_Click3"/>
+                                    <Button Style="{StaticResource pagingButton}" Content="3" Click="PageButton_Click3"/>
+
+                                    <TextBlock Text="..." Foreground="#6C7682" VerticalAlignment="Center" Margin="10 0" FontSize="15"/>
+
+                                    <Button Style="{StaticResource pagingButton}" Content="7" Click="PageButton_Click3"/>
+                                    <Button Style="{StaticResource pagingButton}" Content="8" Click="PageButton_Click3"/>
+                                    <Button Style="{StaticResource pagingButton}" Content="9" Click="PageButton_Click3"/>
+
+                                    <Rectangle Width="1" Fill="#DEE4EC" Margin="3 7"/>
+                                    <Button Name="w2" Style="{StaticResource pagingButton}" Click="NextPageButton_Click3">
+                                        <Icon:PackIconMaterial Kind="ChevronRight" Style="{StaticResource pagingButtonIcon}"/>
+                                    </Button>
+                                </StackPanel>
+                            </Border>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Добавить"  Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold" Foreground="#121518" Margin="0 10 0 10"/>
+                                <TextBlock Text="Наим. долж" TextTrimming="CharacterEllipsis" Grid.Column="0" Grid.Row="1"  FontWeight="SemiBold"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 5 0" FontSize="11" ></TextBlock>
+                                <TextBox Name="Aе" Grid.Column="0" Grid.Row="1" FontWeight="SemiBold" Background="White" Width="140" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 5" ></TextBox>
+                                <TextBlock Text="Выбор долж" TextTrimming="CharacterEllipsis" Grid.Column="1" Grid.Row="1"  FontWeight="SemiBold"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 5 0" FontSize="11"></TextBlock>
+                                <TextBlock Text="Наим. долж" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" FontWeight="SemiBold"  HorizontalAlignment="Left" Margin="0 0 5 0" FontSize="11"></TextBlock>
+                                <TextBlock Text="Изменить" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" FontSize="18" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="#121518" Margin="0 10 0 10" />
+                                <ComboBox Name="vibor_dol"  Grid.Column="1" Grid.Row="1" FontWeight="SemiBold" Background="White" Width="140" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 5" SelectionChanged="vibordol_SelectedIndexChanged" IsEditable="True"></ComboBox>
+                                <TextBox Name="Namа" Grid.Column="1" Grid.Row="2" FontWeight="SemiBold" Background="White" Width="140" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 5"></TextBox>
+                                <TextBlock Text="Выбор долж" TextTrimming="CharacterEllipsis" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" FontWeight="SemiBold"  HorizontalAlignment="Left" Margin="0 0 5 0" FontSize="11"></TextBlock>
+                                <TextBlock Text="Удалить" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" FontSize="18" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="#121518" Margin="0 10 0 10"/>
+                                <ComboBox x:Name="Drмs" IsEditable="True" Grid.Column="2" Grid.Row="1" FontWeight="SemiBold" Background="White" Width="140" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 5" SelectionChanged="DropSpr_SelectedIndexChanged"></ComboBox>
+                                <Button  Click="addDol_Click" Content="Добавить" Width="100" Height="30" Grid.Column="0" Grid.Row="2" Margin="0 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Button Click="editDol_Click" Content="Изменить" Width="100" Height="30" Grid.Column="1" Grid.Row="3" Margin="0 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <Button Click="DropDol_Click" Content="Удалить" Width="100" Height="30" Grid.Column="2" Grid.Row="2" Margin="0 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Grid>
+                        </StackPanel>
+                    </TabItem>
+
+
+
+                    <TabItem Header="Породы" x:Name="TabItem4">
+                        <StackPanel>
+                            <DataGrid Name="Spravoch4" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Height="280">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Код породы" Binding="{Binding Код_породы}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Наименование вида" Binding="{Binding Наименование_вида}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Наименование породы" Binding="{Binding Наименование_породы}"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <!--Pagingation Section-->
+                            <Border Grid.Row="6" HorizontalAlignment="Right" BorderBrush="#DEE4EC" BorderThickness="1" CornerRadius="5" Padding="5" Background="#ffffff" Margin="0 10 10 10">
+                                <StackPanel Name="elButtons" Orientation="Horizontal">
+                                    <Button Name="e1" Style="{StaticResource pagingButton}" Click="PrevPageButton_Click4">
+                                        <Icon:PackIconMaterial Kind="ChevronLeft" Style="{StaticResource pagingButtonIcon}"/>
+                                    </Button>
+                                    <Rectangle Width="1" Fill="#DEE4EC" Margin="3 7"/>
+                                    <Button Style="{StaticResource pagingButton}" Content="1" Click="PageButton_Click4"/>
+                                    <Button Style="{StaticResource pagingButton}" Content="2" Click="PageButton_Click4"/>
+                                    <Button Style="{StaticResource pagingButton}" Content="3" Click="PageButton_Click4"/>
+
+                                    <TextBlock Text="..." Foreground="#6C7682" VerticalAlignment="Center" Margin="10 0" FontSize="15"/>
+
+                                    <Button Style="{StaticResource pagingButton}" Content="7" Click="PageButton_Click4"/>
+                                    <Button Style="{StaticResource pagingButton}" Content="8" Click="PageButton_Click4"/>
+                                    <Button Style="{StaticResource pagingButton}" Content="9" Click="PageButton_Click4"/>
+
+                                    <Rectangle Width="1" Fill="#DEE4EC" Margin="3 7"/>
+                                    <Button Name="e2" Style="{StaticResource pagingButton}" Click="NextPageButton_Click4">
+                                        <Icon:PackIconMaterial Kind="ChevronRight" Style="{StaticResource pagingButtonIcon}"/>
+                                    </Button>
+                                </StackPanel>
+                            </Border>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Добавить"  Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold" Foreground="#121518" Margin="0 10 0 10"/>
+                                <TextBlock Text="Наим.вида" TextTrimming="CharacterEllipsis" Grid.Column="0" Grid.Row="1"  FontWeight="SemiBold"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 5 0" FontSize="11" ></TextBlock>
+                                <TextBlock Text="Наим.породы" Grid.Column="0" TextTrimming="CharacterEllipsis" Grid.Row="2" FontWeight="SemiBold"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 5 0" FontSize="11"></TextBlock>
+                                <TextBox Name="Adа" Grid.Column="0" Grid.Row="1" FontWeight="SemiBold" Background="White" Width="140" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 5" ></TextBox>
+                                <TextBox Name="Addа" Grid.Column="0" Grid.Row="2" FontWeight="SemiBold" Background="White" Width="140" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 5" ></TextBox>
+                                <TextBlock Text="Выбор породу" Grid.Column="1" Grid.Row="1"  FontWeight="SemiBold"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 5 0" FontSize="11"></TextBlock>
+                                <TextBlock Text="Наим.вида" TextTrimming="CharacterEllipsis" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" FontWeight="SemiBold"  HorizontalAlignment="Left" Margin="0 0 5 0" FontSize="11"></TextBlock>
+                                <TextBlock Text="Наим.породы" TextTrimming="CharacterEllipsis" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="0 0 5 0" FontSize="11" ></TextBlock>
+                                <TextBlock Text="Изменить" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" FontSize="18" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="#121518" Margin="0 10 0 10" />
+                                <ComboBox Name="vibor_por" Grid.Column="1" Grid.Row="1" FontWeight="SemiBold" Background="White" Width="140" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 5" SelectionChanged="viborpor_SelectedIndexChanged" IsEditable="True"></ComboBox>
+                                <TextBox Name="Naп" Grid.Column="1" Grid.Row="2" FontWeight="SemiBold" Background="White" Width="140" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 5"></TextBox>
+                                <TextBox Name="Seм" Grid.Column="1" Grid.Row="3" FontWeight="SemiBold" Background="White" Width="140" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 5"></TextBox>
+                                <TextBlock Text="Выбор породы" TextTrimming="CharacterEllipsis" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" FontWeight="SemiBold"  HorizontalAlignment="Left" Margin="0 0 5 0" FontSize="11"></TextBlock>
+                                <TextBlock Text="Удалить" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" FontSize="18" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="#121518" Margin="0 10 0 10"/>
+                                <ComboBox x:Name="Por" IsEditable="True" Grid.Column="2" Grid.Row="1" FontWeight="SemiBold" Background="White" Width="140" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 5" SelectionChanged="DropPorod_SelectedIndexChanged"></ComboBox>
+                                <Button Click="add_Porodi_Click" Name="add_Porodi" Content="Добавить" Width="100" Height="30" Grid.Column="0" Grid.Row="3" Margin="0 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Button Click="edit_Porodi_Click" Name="edit_Porodi" Content="Изменить" Width="100" Height="30" Grid.Column="1" Grid.Row="4" Margin="0 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <Button Click="Drop_Porodi_Click" Name="Drop_Porodi" Content="Удалить" Width="100" Height="30" Grid.Column="2" Grid.Row="2" Margin="0 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Grid>
+                        </StackPanel>
+                    </TabItem>
+                </TabControl>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
