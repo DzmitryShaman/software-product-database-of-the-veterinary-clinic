@@ -1,6 +1,7 @@
 List of dependencies and requirements to run the project:
-- .NET Framework (specify version)
-- Visual Studio (specify version)
+- .NET Framework
+- Visual Studio 2022
+- SQL Management Studio 19
 - Other libraries and packages
 
 Instructions for setting up the project on your local machine.
